@@ -85,7 +85,7 @@ file { $minecraftDirs:
 user { "minecraftUser":
     name => "minecraft",
     ensure => "present",
-    home => "/home/minecraft"
+    home => $serverDir
 }
 
 group { "minecraftEditors":

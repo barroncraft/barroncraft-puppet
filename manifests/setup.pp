@@ -10,7 +10,9 @@ $serverDir    = "/home/minecraft"
 #################
 
 $commonPack = [ "sudo", "screen", "puppet", "vim", "git", "figlet", "wget", "less", "tail" ]
-package { commonPack: ensure => installed }
+package { $commonPack: 
+    ensure => installed 
+}
 
 host { "self":
     ensure       => present,

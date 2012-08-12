@@ -2,7 +2,6 @@
 # Configuration #
 #################
 
-# Add this host as a subdoman
 $serverDomain = "barroncraft.com"
 $serverDir    = "/home/minecraft"
 

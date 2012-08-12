@@ -39,7 +39,7 @@ package { $minecraftPack:
     ensure => installed 
 }
 
-## Init Script ##
+##  Scripts ##
 
 file { "minecraftInit":
     path   => "/etc/init.d/minecraft",
@@ -49,10 +49,17 @@ file { "minecraftInit":
 }
 
 file { "minecraftScript":
-    path => "${serverDir}/bin/minecraft.sh",
+    path   => "${serverDir}/bin/minecraft.sh",
     ensure => present,
     source => "file:///etc/puppet/modules/minecraft/bin/minecraft.sh",
-    mode => 764,
+    mode   => 764,
+}
+
+file { "minecraftResetScript":
+    path   => "${serverDir}/bin/checkreset.sh",
+    ensure => present,
+    source => "file:///etc/puppet/modules/minecraft/bin/checkreset.sh",
+    mode   => 764,
 }
 
 ## Direcories ##

@@ -2,7 +2,6 @@
 # Configuration #
 #################
 
-$serverDomain = "barroncraft.com"
 $serverDir    = "/home/minecraft"
 
 #################
@@ -17,7 +16,7 @@ package { $commonPack:
 host { "self":
     ensure       => present,
     name         => $fqdn,
-    host_aliases => [ $hostname, "${hostname}.${serverDomain}" ],
+    host_aliases => [ $hostname ],
     ip           => $ipaddress,
 }
 

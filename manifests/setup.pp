@@ -47,6 +47,13 @@ file { "minecraftInit":
     target => "${serverDir}/bin/minecraft.sh"
 }
 
+file { "minecraftScript":
+    path => "${serverDir}/bin/minecraft.sh",
+    ensure => present,
+    source => "/modules/minecraft/bin/minecraft.sh",
+    mode => 764,
+}
+
 ## Direcories ##
 $minecraftDirs = [ 
     "${serverDir}",

@@ -50,7 +50,7 @@ file { "minecraftInit":
 file { "minecraftScript":
     path => "${serverDir}/bin/minecraft.sh",
     ensure => present,
-    source => "/modules/minecraft/bin/minecraft.sh",
+    source => "puppet:///modules/minecraft/bin/minecraft.sh",
     mode => 764,
 }
 

@@ -9,7 +9,7 @@ $serverDir    = "/home/minecraft"
 # Common Config #
 #################
 
-$commonPack = [ "sudo", "screen", "puppet", "vim", "git", "figlet", "wget", "less", "tail" ]
+$commonPack = [ "sudo", "screen", "puppet", "vim", "git", "figlet", "wget", "less" ]
 package { $commonPack: 
     ensure => installed 
 }

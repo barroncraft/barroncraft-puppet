@@ -33,7 +33,7 @@ file { "motd":
 ## Packages ##
 
 $minecraftPack = [ "openjdk-6-jre" ]
-package { minecraftPack: 
+package { $minecraftPack: 
     ensure => installed 
 }
 

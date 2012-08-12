@@ -66,6 +66,8 @@ file { "minecraftResetScript":
 $minecraftDirs = [ 
     "${serverDir}",
     "${serverDir}/backups", 
+    "${serverDir}/backups/worlds", 
+    "${serverDir}/backups/server", 
     "${serverDir}/bin", 
     "${serverDir}/server", 
     "${serverDir}/logs", 

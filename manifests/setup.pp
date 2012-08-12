@@ -44,7 +44,8 @@ package { $minecraftPack:
 file { "minecraftInit":
     path   => "/etc/init.d/minecraft",
     ensure => link,
-    target => "${serverDir}/bin/minecraft.sh"
+    target => "${serverDir}/bin/minecraft.sh",
+    mode   => 744,
 }
 
 file { "minecraftScript":

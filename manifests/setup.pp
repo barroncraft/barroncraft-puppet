@@ -40,7 +40,7 @@ package { minecraftPack:
 ## Init Script ##
 
 file { "minecraftInit":
-    path   => "/etc/init.d/minecraft"
+    path   => "/etc/init.d/minecraft",
     ensure => link,
     target => "${serverDir}/bin/minecraft.sh"
 }

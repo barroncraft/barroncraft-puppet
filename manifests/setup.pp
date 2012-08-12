@@ -47,7 +47,7 @@ file { "minecraftInit":
 
 ## Direcories ##
 $minecraftDirs = [ 
-    "${serverDir}"
+    "${serverDir}",
     "${serverDir}/backups", 
     "${serverDir}/bin", 
     "${serverDir}/server", 

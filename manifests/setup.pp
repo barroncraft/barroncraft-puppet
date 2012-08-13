@@ -2,14 +2,21 @@
 # Configuration #
 #################
 
-$serverDir    = "/home/minecraft"
+$serverDir = "/home/minecraft"
 
 #################
 # Common Config #
 #################
 
-$commonPack = [ "sudo", "screen", "puppet", "vim", "git", "figlet", "wget", "less" ]
-package { $commonPack: 
+$commonPack = 
+package { [ "sudo", 
+            "screen", 
+            "puppet", 
+            "vim", 
+            "git", 
+            "figlet", 
+            "wget", 
+            "less" ]: 
     ensure => installed 
 }
 
@@ -32,9 +39,7 @@ file { "motd":
 ####################
 
 ## Packages ##
-
-$minecraftPack = [ "openjdk-6-jre" ]
-package { $minecraftPack: 
+package { [ "openjdk-6-jre" ]: 
     ensure => installed 
 }
 
@@ -62,17 +67,14 @@ file { "minecraftResetScript":
 }
 
 ## Direcories ##
-$minecraftDirs = [ 
-    "${serverDir}",
-    "${serverDir}/backups", 
-    "${serverDir}/backups/worlds", 
-    "${serverDir}/backups/server", 
-    "${serverDir}/bin", 
-    "${serverDir}/server", 
-    "${serverDir}/logs", 
-    "${serverDir}/worlds" ]
-
-file { $minecraftDirs: 
+file { [ "${serverDir}",
+         "${serverDir}/backups", 
+         "${serverDir}/backups/worlds", 
+         "${serverDir}/backups/server", 
+         "${serverDir}/bin", 
+         "${serverDir}/server", 
+         "${serverDir}/logs", 
+         "${serverDir}/worlds" ]:
     ensure  => "directory",
     owner   => "minecraft",
     group   => "mc-editors",

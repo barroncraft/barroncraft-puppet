@@ -84,9 +84,9 @@ file { [ "${serverDir}",
 ## Users & Groups ##
 
 user { "minecraftUser":
-    name => "minecraft",
+    name   => "minecraft",
     ensure => "present",
-    home => $serverDir
+    home   => $serverDir
 }
 
 group { "minecraftEditors":

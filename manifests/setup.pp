@@ -8,7 +8,6 @@ $serverDir = "/home/minecraft"
 # Common Config #
 #################
 
-$commonPack = 
 package { [ "sudo", 
             "screen", 
             "puppet", 
@@ -16,7 +15,7 @@ package { [ "sudo",
             "git", 
             "wget", 
             "less" ]: 
-    ensure => installed 
+    ensure => installed, 
 }
 
 host { "self":

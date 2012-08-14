@@ -14,7 +14,6 @@ package { [ "sudo",
             "puppet", 
             "vim", 
             "git", 
-            "figlet", 
             "wget", 
             "less" ]: 
     ensure => installed 

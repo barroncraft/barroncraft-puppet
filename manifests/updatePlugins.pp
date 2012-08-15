@@ -1,21 +1,23 @@
 $latest = "latest"
 $pluginsPath = "/home/minecraft/server/plugins"
+$pluginsList = 
+    [ "ChestBank"               
+    , "CommandBook"             
+    , "CommandHelper"           
+    , "DeathControl"            
+    , "MessageChangerLite"      
+    , "MineQuery"               
+    , "NoCheatPlus"             
+    , "PermissionsEx"           
+    , "Permissions"             
+    , "SimpleClans"             
+    , "SimpleClansExtensions"   
+    , "Vault"                   
+    , "WorldBorder"             
+    , "WorldGuard"              
+    , "WorldEdit" ]              
 
-bukkitPlugin { "ChestBank":              } 
-bukkitPlugin { "CommandBook":            } 
-bukkitPlugin { "CommandHelper":          } 
-bukkitPlugin { "DeathControl":           } 
-bukkitPlugin { "MessageChangerLite":     } 
-bukkitPlugin { "MineQuery":              } 
-bukkitPlugin { "NoCheatPlus":            } 
-bukkitPlugin { "PermissionsEx":          } 
-bukkitPlugin { "Permissions":            } 
-bukkitPlugin { "SimpleClans":            } 
-bukkitPlugin { "SimpleClansExtensions":  } 
-bukkitPlugin { "Vault":                  } 
-bukkitPlugin { "WorldBorder":            } 
-bukkitPlugin { "WorldGuard":             } 
-bukkitPlugin { "WorldEdit":              } 
+bukkitPlugin { $pluginsList: }
 
 define bukkitPlugin($pluginName = $title, $version = $latest) {
     exec { "DownloadPlugin-${pluginName}":

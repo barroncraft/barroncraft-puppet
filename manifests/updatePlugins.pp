@@ -13,8 +13,8 @@ $pluginsList =
     , "SimpleClansExtensions"   
     , "Vault"                   
     , "WorldBorder"             
-    , "WorldGuard"              
-    , "WorldEdit" ]              
+    , "worldguard"              
+    , "worldedit" ]              
 
 bukkitPlugin { $pluginsList: }
 

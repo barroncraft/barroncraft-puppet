@@ -81,14 +81,12 @@ file { [ "${serverDir}",
 
 ## Users & Groups ##
 
-user { "minecraftUser":
-    name   => "minecraft",
+user { "minecraft":
     ensure => "present",
     shell  => "/bin/bash",
     home   => $serverDir,
 }
 
-group { "minecraftEditors":
-    name   => "mc-editors",
+group { "mc-editors":
     ensure => "present",
 }

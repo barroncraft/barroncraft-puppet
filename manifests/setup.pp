@@ -85,7 +85,7 @@ user { "minecraftUser":
     name   => "minecraft",
     ensure => "present",
     shell  => "/bin/bash",
-    home   => $serverDir
+    home   => $serverDir,
 }
 
 group { "minecraftEditors":

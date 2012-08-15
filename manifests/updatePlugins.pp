@@ -1,18 +1,18 @@
 $pluginsPath = "/home/minecraft/server/plugins"
 $pluginsList = 
-    [ "ChestBank"               
-    , "CommandBook"             
-    , "CommandHelper"           
-    , "DeathControl"            
-    , "MessageChangerLite"      
-    , "MineQuery"               
-    , "NoCheatPlus"             
-    , "PermissionsEx"           
-    , "Permissions"             
-    , "SimpleClans"             
-    , "SimpleClansExtensions"   
-    , "Vault"                   
-    , "WorldBorder"             
+    [ "chestbank"               
+    , "commandbook"             
+    , "commandhelper"           
+    , "deathcontrol"            
+    , "messagechangerlite"      
+    , "minequery"               
+    , "nocheatplus"             
+    , "permissionsex"           
+    , "permissions"             
+    , "simpleclans"             
+    , "simpleclansextensions"   
+    , "vault"                   
+    , "worldborder"             
     , "worldguard"              
     , "worldedit" ]              
 
@@ -25,5 +25,7 @@ define bukkitPlugin() {
         user    => "minecraft",
         require => Package[ "wget" ],
     }
+    
+    package { "wget": ensure => installed }
 }
 

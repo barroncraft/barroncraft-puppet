@@ -18,9 +18,9 @@ $pluginsList =
 
 bukkitPlugin { $pluginsList: }
 
-define bukkitPlugin($pluginName = $title) {
-    exec { "wget http://bukget.org/api/plugin/${pluginName}/latest/download -O ${pluginName}.jar":
-        creates => "${pluginName}.jar",
+define bukkitPlugin() {
+    exec { "wget http://bukget.org/api/plugin/${title}/latest/download -O ${title}.jar":
+        creates => "${title}.jar",
         cwd     => $pluginsPath,
         path    => [ "/bin", "/sbin", "/usr/bin", "/usr/sbin" ],
         user    => "minecraft",

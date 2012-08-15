@@ -54,6 +54,8 @@ file { "minecraftScript":
     path   => "${serverDir}/bin/minecraft.sh",
     ensure => present,
     source => "file:///etc/puppet/modules/minecraft/bin/minecraft.sh",
+    owner   => "minecraft",
+    group   => "mc-editors",
     mode   => 764,
 }
 
@@ -61,6 +63,8 @@ file { "minecraftResetScript":
     path   => "${serverDir}/bin/checkreset.sh",
     ensure => present,
     source => "file:///etc/puppet/modules/minecraft/bin/checkreset.sh",
+    owner   => "minecraft",
+    group   => "mc-editors",
     mode   => 764,
 }
 

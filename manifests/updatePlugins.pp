@@ -18,7 +18,7 @@ bukkitPlugin { "WorldGuard":             }
 bukkitPlugin { "WorldEdit":              } 
 
 define bukkitPlugin($pluginName = $title, $version = $latest) {
-    exec { "DownloadPlugin":
+    exec { "DownloadPlugin-${pluginName}":
         command => "wget http://bukget.org/api/plugin/${pluginName}/${version}/download -O ${pluginName}.jar",
         creates => "${pluginName}.jar",
         cwd     => $pluginsPath,

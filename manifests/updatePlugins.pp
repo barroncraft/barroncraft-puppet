@@ -23,6 +23,7 @@ define bukkitPlugin() {
         cwd     => $pluginsPath,
         path    => [ "/bin", "/sbin", "/usr/bin", "/usr/sbin" ],
         user    => "minecraft",
+        require => Package[ "wget" ],
     }
 }
 

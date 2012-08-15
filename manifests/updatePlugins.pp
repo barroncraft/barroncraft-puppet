@@ -26,6 +26,6 @@ define bukkitPlugin() {
         require => Package[ "wget" ],
     }
     
-    package { "wget": ensure => installed }
 }
 
+package { "wget": ensure => installed }

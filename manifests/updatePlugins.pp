@@ -1,4 +1,4 @@
-$pluginsPath = "/home/minecraft/server/plugins"
+$pluginsPath = "/home/minecraft/server/plugins/update"
 $pluginsList = 
     [ "chestbank"               
     , "commandbook"             

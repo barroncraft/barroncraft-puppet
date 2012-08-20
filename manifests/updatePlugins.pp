@@ -31,6 +31,6 @@ define bukkitPlugin() {
 package { "wget": ensure => installed }
 file { $pluginsPath:
     ensure => directory,
-    user   => "minecraft",
+    owner  => "minecraft",
     group  => "mc-editors",
 }

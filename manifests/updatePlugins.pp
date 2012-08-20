@@ -8,6 +8,7 @@ $pluginsList =
     , "minequery"               
     , "nocheatplus"             
     , "permissionsex"           
+    , "shopkeepers"
     , "simpleclans"             
     , "simpleclansextensions"   
     , "vault"                   

@@ -385,7 +385,7 @@ case "$1" in
 		;;
 	console)
 		# Re-attaches to the server console
-		as_user "script /dev/null -qc \"screen -r\""
+		as_user "script /dev/null -qc \"screen -Dr\""
 		;;
 	view-log)
 		# Watches the end of the log file

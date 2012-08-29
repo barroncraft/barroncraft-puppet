@@ -1,4 +1,4 @@
-$pluginsPath = "/home/minecraft/server/plugins"
+$pluginsPath = "/home/minecraft/server/plugins/update"
 $pluginsList = 
     [ "chestbank"               
     , "commandbook"             
@@ -8,6 +8,7 @@ $pluginsList =
     , "minequery"               
     , "nocheatplus"             
     , "permissionsex"           
+    , "shopkeepers"
     , "simpleclans"             
     , "simpleclansextensions"   
     , "vault"                   
@@ -28,3 +29,8 @@ define bukkitPlugin() {
 }
 
 package { "wget": ensure => installed }
+file { $pluginsPath:
+    ensure => directory,
+    owner  => "minecraft",
+    group  => "mc-editors",
+}

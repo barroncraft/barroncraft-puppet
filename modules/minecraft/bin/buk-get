@@ -1,0 +1,82 @@
+#!/bin/bash
+
+# Bukget wrapper written in bash
+# Created by Nullreff
+
+LONGNAME="Barron Update Keeper (Gets Every Thing)"
+SHORTNAME="buk-get"
+VERSION="0.0.1"
+
+case "$1" in
+    init)
+
+    ;;
+    update)
+        
+    ;;
+    upgrade)
+        
+    ;;
+    install)
+        
+    ;;
+    remove)
+        
+    ;;
+    purge)
+        
+    ;;
+    source)
+        
+    ;;
+    install-dep)
+        
+    ;;
+    bukkit-upgrade)
+        
+    ;;
+    clean)
+        
+    ;;
+    autoclean)
+
+    ;;
+    check)
+
+    ;;
+    markauto)
+
+    ;;
+    unmarkauto)
+
+    ;;
+	help)
+		echo "$LONGNAME v$VERSION"
+		echo "$SHORTNAME is a simple command line interface for downloading and installing bukkit plugins."
+		echo "It uses the interface to bukkit dev provided by bukget.org."
+		echo 
+		echo "Usage: buk-get command [args]"
+		echo 
+		echo "Commands:"
+        echo "   init - Initalized a directory to be managed by $SHORTNAME"
+        echo "   update - Retrieve new lists of plugins"
+        echo "   upgrade - Perform an upgrade"
+        echo "   install - Install new plugins"
+        echo "   remove - Remove plugins"
+        echo "   purge - Remove plugins and config files"
+        echo "   source - Download source archives"
+        echo "   install-dep - Install plugin dependencies"
+        echo "   bukkit-upgrade - Upgrade bukkit"
+        echo "   clean - Erase downloaded archive files"
+        echo "   autoclean - Erase old downloaded archive files"
+        echo "   check - Verify that there are no broken dependencies"
+        echo "   markauto - Mark the given plugins as automatically installed"
+        echo "   unmarkauto - Mark the given plugins as manually installed"
+		;;
+	*)
+		echo "Your command of '$1' confuses me.  Try 'buk-get help' if you need help."
+		exit 1
+		;;
+esac
+
+exit 0

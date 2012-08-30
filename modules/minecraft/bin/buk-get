@@ -7,9 +7,42 @@ LONGNAME="Barron Update Keeper (Gets Every Thing)"
 SHORTNAME="buk-get"
 VERSION="0.0.1"
 
+CONFIGDIR=".bukget"
+PLUGINSDIR="plugins"
+
+function find_plugins_directory() {
+    find_config_directory
+    if [ -d "$CONFIGPATH/../$PLUGINSDIR" ]; then
+        cd "$CONFIGPATH/../$PLUGINSDIR"
+        PLUGINSPATH=$CWD
+        cd -
+    else
+        echo "Error: Unable to find plugins directory"
+    fi
+}
+
+function find_config_directory() {
+    local slashes=${PWD//[^\/]/}
+    local directory=$PWD
+    for (( n=${#slashes}; n>0; --n ))
+    do
+        if [ -d "$directory/$CONFIGDIR" ]; then
+            cd "$directory/$CONFIGDIR" 
+            CONFIGPATH=$PWD
+            cd -
+            return 
+        fi
+        directory="$directory/.."
+    done
+    echo "Error: Unable to find configuration directory.  Did you run '$SHORTNAME init' yet?"
+    exit 1
+}
+
 case "$1" in
     init)
-
+        mkdir -p $CONFIGDIR
+        mkdir -p $PLUGINSDIR
+        echo "Created inital configuration in $PWD/$CONFIGDIR"
     ;;
     update)
         

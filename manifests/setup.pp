@@ -14,7 +14,8 @@ package { [ "sudo",
             "vim", 
             "git", 
             "wget", 
-            "less" ]: 
+            "less" 
+            "sysvconfig"]: 
     ensure => installed, 
 }
 

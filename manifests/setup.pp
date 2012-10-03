@@ -12,10 +12,9 @@ package { [ "sudo",
             "screen", 
             "puppet", 
             "vim", 
-            "git", 
+            "git-core", 
             "wget", 
-            "less" 
-            "sysvconfig"]: 
+            "less" ]: 
     ensure => installed, 
 }
 

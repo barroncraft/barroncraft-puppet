@@ -53,13 +53,20 @@ file { [ "${serverDir}",
          "${serverDir}/backups/worlds", 
          "${serverDir}/backups/server", 
          "${serverDir}/bin", 
-         "${serverDir}/server", 
+         "${serverDir}/configs", 
+         "${serverDir}/configs/default", 
          "${serverDir}/logs", 
          "${serverDir}/worlds" ]:
     ensure  => "directory",
     owner   => "minecraft",
     group   => "mc-editors",
     mode    => 774,
+}
+
+file { "${serverDir}/server":
+    ensure => link,
+    target => "${serverDir}/configs/default",
+    mode   => 744,
 }
 
 ## Users & Groups ##

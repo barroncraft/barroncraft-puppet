@@ -4,41 +4,20 @@
 
 $serverDir = "/home/minecraft"
 
-#################
-# Common Config #
-#################
+####################
+# Minecraft Config #
+####################
 
+## Packages ##
 package { [ "sudo", 
             "screen", 
             "puppet", 
             "vim", 
             "git-core", 
             "wget", 
-            "less" ]: 
+            "less", 
+            "openjdk-6-jre" ]: 
     ensure => installed, 
-}
-
-host { "self":
-    ensure       => present,
-    name         => $fqdn,
-    host_aliases => [ $hostname ],
-    ip           => $ipaddress,
-}
-
-file { "motd":
-    ensure  => file,
-    path    => "/etc/motd",
-    mode    => "0644",
-    content => "Minecraft node ${hostname}",
-}
-
-####################
-# Minecraft Config #
-####################
-
-## Packages ##
-package { [ "openjdk-6-jre" ]: 
-    ensure => installed 
 }
 
 ##  Scripts ##

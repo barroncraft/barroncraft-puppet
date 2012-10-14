@@ -51,7 +51,9 @@ case "$1" in
         
     ;;
     install)
-        
+        find_plugins_directory
+        cd $PLUGINSPATH
+        wget --content-disposition http://bukget.org/api/plugin/$2/latest/download
     ;;
     remove)
         

@@ -16,6 +16,7 @@ package { [ "sudo",
             "git-core", 
             "wget", 
             "less", 
+            "rsync",
             "openjdk-6-jre" ]: 
     ensure => installed, 
 }

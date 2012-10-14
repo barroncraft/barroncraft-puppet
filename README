@@ -1,8 +1,5 @@
 Puppet scripts and configuration used to setup the servers for Barron Minecraft.  To create your own server, run the folowing as the root user (assuming debian or similar):
 
-apt-get install puppet git-core
-rm -rf /etc/puppet/*
-git clone git://github.com/Nullreff/minecraft-puppet.git /etc/puppet
-puppet apply /etc/puppet/manifests/setup.pp
+curl -sL https://raw.github.com/Nullreff/minecraft-puppet/master/install.sh | bash
 
 This is still a work in progress, so don't use it on your production servers...

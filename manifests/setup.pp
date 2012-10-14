@@ -20,6 +20,18 @@ package { [ "sudo",
     ensure => installed, 
 }
 
+## Service & Cron ##
+
+service { "minecraft":
+    enable => true,
+}
+
+cron { "resetDotaCron":
+    command => "${serverDir}/bin/checkreset.sh",
+    user    => "minecraft",
+    minute  => "*/1",
+}
+
 ##  Scripts ##
 
 file { "minecraftInit":

@@ -24,22 +24,25 @@ package { [ "sudo",
 ## Service & Cron ##
 
 service { "minecraft":
-    enable => true,
+    enable  => true,
+    require => File["minecraftInit"],
 }
 
 cron { "resetDotaCron":
     command => "${serverDir}/bin/checkreset.sh",
     user    => "minecraft",
     minute  => "*/1",
+    require => File["minecraftResetScript"],
 }
 
 ##  Scripts ##
 
 file { "minecraftInit":
-    path   => "/etc/init.d/minecraft",
-    ensure => link,
-    target => "${serverDir}/bin/minecraft.sh",
-    mode   => 744,
+    path    => "/etc/init.d/minecraft",
+    ensure  => link,
+    target  => "${serverDir}/bin/minecraft.sh",
+    mode    => 744,
+    require => File["minecraftScript"],
 }
 
 file { "minecraftScript":

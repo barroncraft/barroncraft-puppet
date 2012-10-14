@@ -1,8 +1,8 @@
 #!/bin/sh
 
 apt-get update
-apt-get upgrade
-apt-get install puppet git-core
+apt-get upgrade -y
+apt-get install -y puppet git-core
 rm -rf /etc/puppet/*
 git clone git://github.com/Nullreff/minecraft-puppet.git /etc/puppet
-puppet apply /etc/puppet/manifests/setup.pp
+puppet /etc/puppet/manifests/setup.pp

@@ -38,10 +38,10 @@ cron { "resetDotaCron":
 ##  Scripts ##
 
 file { "minecraftInit":
-    path    => "/etc/init.d/minecraft",
-    ensure  => link,
-    target  => "${serverDir}/bin/minecraft.sh",
-    mode    => 744,
+    path   => "/etc/init.d/minecraft",
+    ensure => link,
+    target => "${serverDir}/bin/minecraft.sh",
+    mode   => 755,
     require => File["minecraftScript"],
 }
 
@@ -51,7 +51,7 @@ file { "minecraftScript":
     source => "file:///etc/puppet/modules/minecraft/bin/minecraft.sh",
     owner   => "minecraft",
     group   => "mc-editors",
-    mode   => 764,
+    mode   => 774,
 }
 
 file { "minecraftResetScript":
@@ -60,7 +60,7 @@ file { "minecraftResetScript":
     source => "file:///etc/puppet/modules/minecraft/bin/checkreset.sh",
     owner   => "minecraft",
     group   => "mc-editors",
-    mode   => 764,
+    mode   => 774,
 }
 
 ## Direcories ##

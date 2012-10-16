@@ -28,8 +28,10 @@ SERVICE="CraftBukkit.jar"  #craftbukkit-1.2.4-R2-SNAPSHOT.jar"
 SCREEN="minecraft"
 # User that should run the server
 USERNAME="minecraft"
+# Minecraft home direcory
+MCHOME="/home/minecraft"
 # Path to minecraft directory 
-MCPATH="/home/minecraft/server"
+MCPATH="${MCHOME}/server"
 # Number of CPUs/cores to usei
 CPU_COUNT=1
 # Initial memory usage
@@ -40,13 +42,13 @@ MAXMEM="1024M"
 # of RAM available the size of your map and the RAM-consumption of your base system.
 INVOCATION="java -Xmx$MAXMEM -Xms$INITMEM -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalPacing -XX:ParallelGCThreads=$CPU_COUNT -XX:+AggressiveOpts -jar $SERVICE nogui"
 # Where the world backups should go
-BACKUPPATH="${MCPATH}/../backups/worlds"
+BACKUPPATH="${MCHOME}/backups/worlds"
 # Where the logs are copied with log-roll 
-LOGPATH="${MCPATH}/../logs"
+LOGPATH="${MCHOME}/logs"
 # Where the whole minecraft directory is copied when whole-backup is executed
-WHOLEBACKUP="${MCPATH}/../backups/server"
+WHOLEBACKUP="${MCHOME}/backups/server"
 # Where the worlds are located on the disk. Can not be the same as MCPATH.
-WORLDSTORAGE="${MCPATH}/../worlds"
+WORLDSTORAGE="${MCHOME}/worlds"
 # Path to the the mounted ramdisk default in Ubuntu: /dev/shm
 RAMDISK="/dev/shm"
 # use tar or zip files for world backup

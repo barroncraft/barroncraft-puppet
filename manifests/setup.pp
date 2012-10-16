@@ -82,6 +82,8 @@ file { [ "${serverDir}",
 file { "${serverDir}/server":
     ensure => link,
     target => "${serverDir}/configs/default",
+    owner  => "minecraft",
+    group  => "mc-editors",
     mode   => 744,
 }
 

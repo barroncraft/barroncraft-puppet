@@ -4,9 +4,9 @@
 
 $serverDir = "/home/minecraft"
 
-####################
-# Minecraft Config #
-####################
+#########################
+# Minecraft Dota Config #
+#########################
 
 ## Packages ##
 package { [ "sudo", 
@@ -28,6 +28,13 @@ service { "minecraft":
     require => File["minecraftInit"],
 }
 
+cron { "resetDotaCron":
+    command => "${serverDir}/bin/checkreset.sh",
+    user    => "minecraft",
+    minute  => "*/1",
+    require => File["minecraftResetScript"],
+}
+
 ##  Scripts ##
 
 file { "minecraftInit":
@@ -42,6 +49,15 @@ file { "minecraftScript":
     path   => "${serverDir}/bin/minecraft.sh",
     ensure => present,
     source => "file:///etc/puppet/modules/minecraft/bin/minecraft.sh",
+    owner   => "minecraft",
+    group   => "mc-editors",
+    mode   => 774,
+}
+
+file { "minecraftResetScript":
+    path   => "${serverDir}/bin/checkreset.sh",
+    ensure => present,
+    source => "file:///etc/puppet/modules/minecraft/bin/checkreset.sh",
     owner   => "minecraft",
     group   => "mc-editors",
     mode   => 774,

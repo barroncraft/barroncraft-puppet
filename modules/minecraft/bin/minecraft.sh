@@ -23,7 +23,7 @@
 ######### SETTINGS ##########
 #############################
 # Name of server.jar file
-SERVICE="CraftBukkit.jar"  #craftbukkit-1.2.4-R2-SNAPSHOT.jar"
+SERVICE="craftbukkit.jar"
 # Name to use for the screen instance
 SCREEN="minecraft"
 # User that should run the server

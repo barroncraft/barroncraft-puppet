@@ -28,6 +28,13 @@ service { "minecraft":
     require => File["minecraftInit"],
 }
 
+cron { "minecraftToDisk":
+    command => "${serverDir}/bin/minecraft.sh to-disk > /dev/null",
+    user    => "minecraft",
+    minute  => "*/30",
+    require => File["minecraftScript"],
+}
+
 ##  Scripts ##
 
 file { "minecraftInit":

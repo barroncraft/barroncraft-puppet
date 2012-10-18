@@ -1,5 +1,5 @@
 Puppet scripts and configuration used to setup the servers for Barron Minecraft.  To create your own server, run the folowing as the root user (assuming debian or similar):
 
-curl -sL https://raw.github.com/Nullreff/minecraft-puppet/master/install.sh | bash
+curl -sL https://raw.github.com/Nullreff/minecraft-puppet/master/install/base.sh | bash
 
 This is still a work in progress, so don't use it on your production servers...

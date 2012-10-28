@@ -351,6 +351,7 @@ case "$1" in
     reload)
         # Reloads the server plugins (Bukkit)
         as_user "screen -p 0 -S $SCREEN -X eval 'stuff \"reload\"\015'"
+        ;;
 	backup)
 		# Backups world
 		as_user "screen -p 0 -S $SCREEN -X eval 'stuff \"say Backing up world.\"\015'"

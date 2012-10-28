@@ -348,6 +348,9 @@ case "$1" in
 		to_ram
 		mc_start
 		;;
+    reload)
+        # Reloads the server plugins (Bukkit)
+        as_user "screen -p 0 -S $SCREEN -X eval 'stuff \"reload\"\015'"
 	backup)
 		# Backups world
 		as_user "screen -p 0 -S $SCREEN -X eval 'stuff \"say Backing up world.\"\015'"
@@ -453,6 +456,7 @@ case "$1" in
 		echo "stop - stops the server"
 		echo "restart - restarts the server"
 		echo "reset - resets the map on the server (Minecraft DOTA)"
+		echo "reload - reloads the server plugins"
 		echo "backup - backups the worlds defined in the script"
 		echo "whole-backup - backups the entire server folder"
 		echo "update - fetches the latest version of minecraft.jar server and Bukkit"

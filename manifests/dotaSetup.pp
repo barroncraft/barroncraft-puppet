@@ -3,6 +3,9 @@
 #################
 
 $serverDir = "/home/minecraft"
+$configUrl = "git://github.com/barroncraft/barron-minecraft-dota.git"
+$configName = "barron-minecraft-dota"
+$paths = ["/bin", "/sbin", "/usr/bin", "/usr/sbin"]
 
 #########################
 # Minecraft Dota Config #
@@ -81,7 +84,7 @@ file { [ "${serverDir}",
 
 file { "${serverDir}/server":
     ensure => link,
-    target => "${serverDir}/configs/default",
+    target => "${serverDir}/configs/${configName}",
     owner  => "minecraft",
     group  => "mc-editors",
     mode   => 744,
@@ -98,3 +101,42 @@ user { "minecraft":
 group { "mc-editors":
     ensure => "present",
 }
+
+## Configuration ##
+
+exec { "createConfig":
+    command => "git clone ${configUrl} ${configName}",
+    cwd     => "${serverDir}/configs",
+    creates => "${serverDir}/configs/${configName}",
+    path    => $paths,
+    user    => "minecraft",
+    require => [
+        Package["git-core"],
+        File["${serverDir}/configs"]
+   ],
+}
+
+exec { "createDotaWorld":
+    command => "cp -r configs/${configName}/worlds/dota worlds",
+    cwd     => "${serverDir}",
+    creates => "${serverDir}/worlds/dota",
+    path    => $paths,
+    user    => "minecraft",
+    require => [
+        Exec["createConfig"],
+        File["${serverDir}/worlds"]
+    ],
+}
+
+exec { "createDotaBackup":
+    command => "cp -r configs/${configName}/worlds/dota backups/worlds",
+    cwd     => "${serverDir}",
+    creates => "${serverDir}/backups/worlds/dota",
+    path    => $paths,
+    user    => "minecraft",
+    require => [
+        Exec["createConfig"],
+        File["${serverDir}/backups/worlds"]
+    ],
+}
+

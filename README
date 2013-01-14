@@ -1,5 +1,5 @@
 Puppet scripts and configuration used to setup the servers for Barron Minecraft.  To create your own server, run the folowing as the root user (assuming debian or similar):
 
-wget -qO- https://raw.github.com/Nullreff/minecraft-puppet/master/install/base.sh | sh
+wget -qO- https://raw.github.com/barroncraft/barroncraft-puppet/master/install/base.sh | sh
 
 This is still a work in progress, so don't use it on your production servers...

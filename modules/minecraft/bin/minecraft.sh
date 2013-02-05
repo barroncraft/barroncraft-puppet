@@ -132,7 +132,8 @@ mc_stop() {
 }
 log_roll() {
     as_user "mkdir -p $LOGPATH"
-    path=`datepath $LOGPATH/server_ .log.gz .log`
+    server=`uname -n`
+    path=`datepath $LOGPATH/$server_ .log.gz .log`
     as_user "mv $MCPATH/server.log $path && gzip $path"
 }
 get_worlds() {

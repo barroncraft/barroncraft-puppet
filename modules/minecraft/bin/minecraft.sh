@@ -306,11 +306,11 @@ change_ramdisk_state() {
 
 reset_dota_world() {
     as_user "	
-    rm -r $WORLDSTORAGE/dota;
+    rm -rf $WORLDSTORAGE/dota;
     cp -r $BACKUPPATH/dota/original $WORLDSTORAGE/dota;
-    rm $MCPATH/plugins/SimpleClans/SimpleClans.db;
-    rm -r $MCPATH/dota;
-    rm $MCPATH/reset-required;
+    rm -f $MCPATH/plugins/SimpleClans/SimpleClans.db;
+    rm -rf $MCPATH/dota;
+    rm -f $MCPATH/reset-required;
     "
 }
 

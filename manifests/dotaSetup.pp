@@ -70,12 +70,12 @@ file { "minecraftResetScript":
 file { [ "${serverDir}",
          "${serverDir}/backups", 
          "${serverDir}/backups/worlds", 
+         "${serverDir}/backups/worlds/dota",
          "${serverDir}/backups/server", 
          "${serverDir}/bin", 
          "${serverDir}/configs", 
          "${serverDir}/configs/default", 
-         "${serverDir}/logs", 
-         "${serverDir}/worlds" ]:
+         "${serverDir}/logs" ]:
     ensure  => "directory",
     owner   => "minecraft",
     group   => "mc-editors",
@@ -116,27 +116,15 @@ exec { "createConfig":
    ],
 }
 
-exec { "createDotaWorld":
-    command => "cp -r configs/${configName}/worlds/dota worlds",
-    cwd     => "${serverDir}",
-    creates => "${serverDir}/worlds/dota",
-    path    => $paths,
-    user    => "minecraft",
-    require => [
-        Exec["createConfig"],
-        File["${serverDir}/worlds"]
-    ],
-}
-
 exec { "createDotaBackup":
-    command => "cp -r configs/${configName}/worlds/dota backups/worlds",
+    command => "cp -r configs/${configName}/worlds/dota backups/worlds/dota/original",
     cwd     => "${serverDir}",
-    creates => "${serverDir}/backups/worlds/dota",
+    creates => "${serverDir}/backups/worlds/dota/original",
     path    => $paths,
     user    => "minecraft",
     require => [
         Exec["createConfig"],
-        File["${serverDir}/backups/worlds"]
+        File["${serverDir}/backups/worlds/dota"]
     ],
 }
 

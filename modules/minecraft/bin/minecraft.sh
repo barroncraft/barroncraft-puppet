@@ -48,7 +48,7 @@ LOGPATH="${MCHOME}/logs"
 # Where the whole minecraft directory is copied when whole-backup is executed
 WHOLEBACKUP="${MCHOME}/backups/server"
 # Where the worlds are located on the disk. Can not be the same as MCPATH.
-WORLDSTORAGE="${MCHOME}/worlds"
+WORLDSTORAGE="${MCPATH}/worlds"
 # Path to the the mounted ramdisk default in Ubuntu: /dev/shm
 RAMDISK="/dev/shm"
 # use tar or zip files for world backup
@@ -306,7 +306,7 @@ change_ramdisk_state() {
 reset_dota_world() {
     as_user "	
     rm -r $WORLDSTORAGE/dota;
-    cp -r $BACKUPPATH/dota $WORLDSTORAGE;
+    cp -r $BACKUPPATH/dota/original $WORLDSTORAGE/dota;
     rm $MCPATH/plugins/SimpleClans/SimpleClans.db;
     rm -r $MCPATH/dota;
     rm $MCPATH/reset-required;

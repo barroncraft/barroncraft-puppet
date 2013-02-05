@@ -22,6 +22,8 @@
 #############################
 ######### SETTINGS ##########
 #############################
+# Server name
+SERVER_NAME=`uname -n`
 # Name of server.jar file
 SERVICE="craftbukkit.jar"
 # Name to use for the screen instance
@@ -132,8 +134,7 @@ mc_stop() {
 }
 log_roll() {
     as_user "mkdir -p $LOGPATH"
-    server=`uname -n`
-    path=`datepath $LOGPATH/$server_ .log.gz .log`
+    path=`datepath $LOGPATH/${SERVER_NAME}_ .log.gz .log`
     as_user "mv $MCPATH/server.log $path && gzip $path"
 }
 get_worlds() {

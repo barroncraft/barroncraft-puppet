@@ -308,8 +308,6 @@ reset_dota_world() {
     rm -r $WORLDSTORAGE/dota;
     cp -r $BACKUPPATH/dota $WORLDSTORAGE;
     rm $MCPATH/plugins/SimpleClans/SimpleClans.db;
-    rm $MCPATH/plugins/ChestBank/chests.yml;
-    cp -f $MCPATH/plugins/ChestBank/chests.yml{.backup,};
     rm -r $MCPATH/dota;
     rm $MCPATH/reset-required;
     "

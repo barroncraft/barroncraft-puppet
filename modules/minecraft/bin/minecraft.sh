@@ -395,7 +395,7 @@ case "$1" in
         ;;
     view-log)
         # Watches the end of the log file
-        tail -fn 50 $MCPATH/server.log
+        tail -Fn 50 $MCPATH/server.log
         ;;
     log-roll)
         # Moves and Gzips the logfile, a big log file slows down the

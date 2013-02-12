@@ -20,6 +20,7 @@ package { [ "sudo",
             "wget", 
             "less", 
             "rsync",
+            "zip",
             "openjdk-6-jre" ]: 
     ensure => installed, 
 }

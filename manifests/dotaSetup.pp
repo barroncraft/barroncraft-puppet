@@ -99,6 +99,14 @@ user { "minecraft":
     home   => $serverDir,
 }
 
+file { "${serverDir}/.bashrc":
+    content => 'PATH=$PATH:~/bin',
+    ensure  => "present",
+    owner   => "minecraft",
+    group   => "mc-editors",
+    mode    => 644,
+}
+
 group { "mc-editors":
     ensure => "present",
 }

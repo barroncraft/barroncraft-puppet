@@ -397,6 +397,11 @@ case "$1" in
         # Watches the end of the log file
         tail -Fn 50 $MCPATH/server.log
         ;;
+    grep-log)
+        # Searches through all past logs
+        gzip -dc $MCHOME/* | grep "$2"
+        grep "$2" $MCPATH/server.log
+        ;;
     log-roll)
         # Moves and Gzips the logfile, a big log file slows down the
         # server A LOT (what was notch thinking?)
@@ -463,6 +468,7 @@ case "$1" in
         echo "update - fetches the latest version of minecraft.jar server and Bukkit"
         echo "console - attach to the servers console"
         echo "view-log - watch the end of the current log file"
+        echo "grep-log - search through all past log files"
         echo "log-roll - Moves and gzips the logfile"
         echo "roll-all - Rolles logs and updates the world map"
         echo "to-disk - copies the worlds from the ramdisk to worldstorage"

@@ -399,7 +399,7 @@ case "$1" in
         ;;
     grep-log)
         # Searches through all past logs
-        gzip -dc $MCHOME/* | grep "$2"
+        gzip -dc $MCHOME/logs/* | grep "$2"
         grep "$2" $MCPATH/server.log
         ;;
     log-roll)

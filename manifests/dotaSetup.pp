@@ -21,6 +21,7 @@ package { [ "sudo",
             "less", 
             "rsync",
             "zip",
+            "gzip",
             "openjdk-6-jre" ]: 
     ensure => installed, 
 }

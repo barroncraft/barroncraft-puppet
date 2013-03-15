@@ -35,7 +35,7 @@ MCHOME="/home/minecraft"
 # Path to minecraft directory 
 MCPATH="${MCHOME}/server"
 # Number of CPUs/cores to usei
-CPU_COUNT=1
+CPU_COUNT=`nproc`
 # Initial memory usage
 INITMEM="512M"
 # Maximum amount of memory to use

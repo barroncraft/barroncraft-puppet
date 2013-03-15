@@ -3,7 +3,7 @@
 #################
 
 $serverDir = "/home/minecraft"
-$configUrl = "git://github.com/barroncraft/barron-minecraft-dota.git"
+$configUrl = "git://github.com/barroncraft/minecraft-dota-config.git"
 $configName = "barron-minecraft-dota"
 $paths = ["/bin", "/sbin", "/usr/bin", "/usr/sbin"]
 

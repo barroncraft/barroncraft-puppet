@@ -39,7 +39,7 @@ CPU_COUNT=`nproc`
 # Initial memory usage
 INITMEM="512M"
 # Maximum amount of memory to use
-MAXMEM="1024M"
+MAXMEM="800M"
 # Remember: give the ramdisk enough space, subtract from the total amount
 # of RAM available the size of your map and the RAM-consumption of your base system.
 INVOCATION="java -Xmx$MAXMEM -Xms$INITMEM -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalPacing -XX:ParallelGCThreads=$CPU_COUNT -XX:+AggressiveOpts -jar $SERVICE nogui"

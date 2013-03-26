@@ -315,20 +315,23 @@ reset_dota_world() {
 }
 
 update_config() {
-    cd $MCPATH
-    git fetch # Pre-fetch configuration so we have less downtime
+    as_user "cd $MCPATH; git fetch" # Pre-fetch configuration so we have less downtime
     as_user "screen -p 0 -S $SCREEN -X eval 'stuff \"say SERVER IS RESTARTING FOR AN UPGRADE, BE BACK IN A FEW...\"\015'"
     mc_stop
 
     # Clean up the configuration to its last state
+    as_user "
+    cd $MCPATH
     git reset HEAD --hard
     git clean -fd
-
     git pull
+    "
 
     # Update our backup of the world map
+    as_user "
     rm -rf $BACKUPPATH/dota/original/*
     cp -r $MCPATH/worlds/dota/* $BACKUPPATH/dota/original
+    "
 
     reset_dota_world
     mc_start

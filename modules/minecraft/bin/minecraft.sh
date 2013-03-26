@@ -330,11 +330,8 @@ update_config() {
     # Update our backup of the world map
     as_user "
     rm -rf $BACKUPPATH/dota/original/*
-    cp -r $MCPATH/worlds/dota/* $BACKUPPATH/dota/original
+    cp -r $WORLDSTORAGE/dota/* $BACKUPPATH/dota/original
     "
-
-    reset_dota_world
-    mc_start
 }
 
 case "$1" in

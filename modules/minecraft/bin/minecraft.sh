@@ -314,6 +314,25 @@ reset_dota_world() {
     "
 }
 
+update_config() {
+    cd $MCPATH
+    git fetch # Pre-fetch configuration so we have less downtime
+    as_user "screen -p 0 -S $SCREEN -X eval 'stuff \"say SERVER IS RESTARTING FOR AN UPGRADE, BE BACK IN A FEW...\"\015'"
+    mc_stop
+
+    # Clean up the configuration to its last state
+    git reset HEAD --hard
+    git clean -fd
+
+    git pull
+
+    # Update our backup of the world map
+    rm -rf $BACKUPPATH/dota/original/*
+    cp -r $MCPATH/worlds/dota/* $BACKUPPATH/dota/original
+
+    reset_dota_world
+    mc_start
+}
 
 case "$1" in
     start)
@@ -374,6 +393,9 @@ case "$1" in
         mc_update
         check_links
         mc_start
+        ;;
+    update-config)
+        update_config
         ;;
     to-disk)
         # Writes from the ramdisk to disk, in case the server crashes. 
@@ -466,6 +488,7 @@ case "$1" in
         echo "backup - backups the worlds defined in the script"
         echo "whole-backup - backups the entire server folder"
         echo "update - fetches the latest version of minecraft.jar server and Bukkit"
+        echo "update-config - fetches the latest server changes from a git repository"
         echo "console - attach to the servers console"
         echo "view-log - watch the end of the current log file"
         echo "grep-log - search through all past log files"

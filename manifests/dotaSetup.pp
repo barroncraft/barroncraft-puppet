@@ -14,26 +14,28 @@ $paths = ["/bin", "/sbin", "/usr/bin", "/usr/sbin"]
 ## Packages ##
 case $operatingsystem {
     centos, redhat: {
-        $javaPackage = "java-1.7.0-openjdk"
-        $gitPackage = "git"
+        $javaPackage = 'java-1.7.0-openjdk'
+        $gitPackage = 'git'
+        $vimPackage = 'vim-enhanced'
     }
     debian: {
-        $javaPackage = "openjdk-6-jre"
-        $gitPackage = "git-core"
+        $javaPackage = 'openjdk-6-jre'
+        $gitPackage = 'git-core'
+        $vimPackage = 'vim'
     }
     ubuntu: {
-        $javaPackage = "openjdk-7-jre"
-        $gitPackage = "git"
+        $javaPackage = 'openjdk-7-jre'
+        $gitPackage = 'git'
+        $vimPackage = 'vim'
     }
     default: {
-        fail("Unsuported operating system.  Email contact@barroncraft.com if you need help.")
+        fail('Unsuported operating system.  Email contact@barroncraft.com if you need help.')
     }
 }
 
 package { [ "sudo",
             "screen",
-            "puppet",
-            "vim",
+            $vimPackage,
             $gitPackage,
             "wget",
             "less",

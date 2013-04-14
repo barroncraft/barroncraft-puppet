@@ -7,15 +7,15 @@ if [ -f /etc/debian_version ]; then
     apt-get install -y puppet git-core
 elif [ -f /etc/redhat-release ]; then
     if grep ' 5\.' /etc/redhat-release >/dev/null; then
-        RELEASE = 5
+        RELEASE='5'
     elif grep ' 6\.' /etc/redhat-release >/dev/null; then
-        RELEASE = 6
+        RELEASE='6'
     else
         echo "Unsuported CentOS/RedHat version, please use 5.x or 6.x."
         exit 1
     fi
     echo "Detected CentOS/RedHat system, installing..."
-    rpm -ivh http://yum.puppetlabs.com/el/5/products/i386/puppetlabs-release-$RELEASE-6.noarch.rpm
+    rpm -ivh http://yum.puppetlabs.com/el/$RELEASE/products/i386/puppetlabs-release-$RELEASE-6.noarch.rpm
     yum update
     yum upgrade -y
     yum install -y puppet git

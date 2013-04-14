@@ -12,18 +12,36 @@ $paths = ["/bin", "/sbin", "/usr/bin", "/usr/sbin"]
 #########################
 
 ## Packages ##
-package { [ "sudo", 
-            "screen", 
-            "puppet", 
-            "vim", 
-            "git-core", 
-            "wget", 
-            "less", 
+case $operatingsystem {
+    centos, redhat: {
+        $javaPackage = "java-1.7.0-openjdk"
+        $gitPackage = "git"
+    }
+    debian: {
+        $javaPackage = "openjdk-6-jre"
+        $gitPackage = "git-core"
+    }
+    ubuntu: {
+        $javaPackage = "openjdk-7-jre"
+        $gitPackage = "git"
+    }
+    default: {
+        fail("Unsuported operating system.  Email contact@barroncraft.com if you need help.")
+    }
+}
+
+package { [ "sudo",
+            "screen",
+            "puppet",
+            "vim",
+            $gitPackage,
+            "wget",
+            "less",
             "rsync",
             "zip",
             "gzip",
-            "openjdk-6-jre" ]: 
-    ensure => installed, 
+            $javaPackage ]:
+    ensure => installed,
 }
 
 ## Service & Cron ##
@@ -70,13 +88,13 @@ file { "minecraftResetScript":
 
 ## Direcories ##
 file { [ "${serverDir}",
-         "${serverDir}/backups", 
-         "${serverDir}/backups/worlds", 
+         "${serverDir}/backups",
+         "${serverDir}/backups/worlds",
          "${serverDir}/backups/worlds/dota",
-         "${serverDir}/backups/server", 
-         "${serverDir}/bin", 
-         "${serverDir}/configs", 
-         "${serverDir}/configs/default", 
+         "${serverDir}/backups/server",
+         "${serverDir}/bin",
+         "${serverDir}/configs",
+         "${serverDir}/configs/default",
          "${serverDir}/logs" ]:
     ensure  => "directory",
     owner   => "minecraft",
@@ -121,7 +139,7 @@ exec { "createConfig":
     path    => $paths,
     user    => "minecraft",
     require => [
-        Package["git-core"],
+        Package[$gitPackage],
         File["${serverDir}/configs"]
    ],
 }

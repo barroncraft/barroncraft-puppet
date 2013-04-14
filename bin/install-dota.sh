@@ -15,7 +15,7 @@ elif [ -f /etc/redhat-release ]; then
         exit 1
     fi
     echo "Detected CentOS/RedHat system, installing..."
-    rpm -ivh http://yum.puppetlabs.com/el/$RELEASE/products/i386/puppetlabs-release-$RELEASE-6.noarch.rpm
+    rpm -ivhy http://yum.puppetlabs.com/el/$RELEASE/products/i386/puppetlabs-release-$RELEASE-6.noarch.rpm
     yum update
     yum upgrade -y
     yum install -y puppet git

@@ -17,16 +17,19 @@ case $operatingsystem {
         $javaPackage = 'java-1.7.0-openjdk'
         $gitPackage = 'git'
         $vimPackage = 'vim-enhanced'
+        $rubyDevPackage = 'ruby-devel'
     }
     debian: {
         $javaPackage = 'openjdk-6-jre'
         $gitPackage = 'git-core'
         $vimPackage = 'vim'
+        $rubyDevPackage = 'ruby-dev'
     }
     ubuntu: {
         $javaPackage = 'openjdk-7-jre'
         $gitPackage = 'git'
         $vimPackage = 'vim'
+        $rubyDevPackage = 'ruby-dev'
     }
     default: {
         fail('Unsuported operating system.  Email contact@barroncraft.com if you need help.')
@@ -37,6 +40,8 @@ package { [ "sudo",
             "screen",
             $vimPackage,
             $gitPackage,
+            "make",
+            $rubyDevPackage,
             "htop",
             "wget",
             "less",
@@ -47,10 +52,18 @@ package { [ "sudo",
     ensure => installed,
 }
 
-package { [ "rake",
-            "bukin" ]:
+package { 'rake':
     ensure   => installed,
     provider => 'gem',
+}
+
+package { 'bukin':
+    ensure   => installed,
+    provider => 'gem',
+    require  => [
+        Package['make'],
+        Package[$rubyDevPackage],
+    ],
 }
 
 ## Service & Cron ##

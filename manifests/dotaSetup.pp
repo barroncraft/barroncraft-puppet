@@ -41,6 +41,7 @@ package { [ "sudo",
             $vimPackage,
             $gitPackage,
             "make",
+            "gcc",
             $rubyDevPackage,
             "htop",
             "wget",
@@ -62,6 +63,7 @@ package { 'bukin':
     provider => 'gem',
     require  => [
         Package['make'],
+        Package['gcc'],
         Package[$rubyDevPackage],
     ],
 }

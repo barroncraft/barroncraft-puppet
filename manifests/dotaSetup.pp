@@ -47,11 +47,20 @@ package { [ "sudo",
     ensure => installed,
 }
 
+package { [ "rake",
+            "bukin" ]:
+    ensure   => installed,
+    provider => 'gem',
+}
+
 ## Service & Cron ##
 
 service { "minecraft":
     enable  => true,
-    require => File["minecraftInit"],
+    require => [
+        File["minecraftInit"],
+        Exec['setupDota'],
+    ],
 }
 
 cron { "resetDotaCron":
@@ -147,15 +156,15 @@ exec { "createConfig":
    ],
 }
 
-exec { "createDotaBackup":
-    command => "cp -r configs/${configName}/worlds/dota backups/worlds/dota/original",
+exec { 'setupDota':
+    command => 'cd server/; rake build',
     cwd     => "${serverDir}",
-    creates => "${serverDir}/backups/worlds/dota/original",
+    creates => "${serverDir}/server/backups/",
     path    => $paths,
-    user    => "minecraft",
+    user    => 'minecraft',
     require => [
-        Exec["createConfig"],
-        File["${serverDir}/backups/worlds/dota"]
+        Exec['createConfig'],
+        Package['rake'],
+        Package['bukin'],
     ],
 }
-

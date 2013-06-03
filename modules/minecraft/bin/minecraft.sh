@@ -25,7 +25,7 @@
 # Server name
 SERVER_NAME=`uname -n`
 # Name of server.jar file
-SERVICE="craftbukkit.jar"
+SERVICE="spigot.jar"
 # Name to use for the screen instance
 SCREEN="minecraft"
 # User that should run the server
@@ -306,11 +306,8 @@ change_ramdisk_state() {
 
 reset_dota_world() {
     as_user "	
-    rm -rf $WORLDSTORAGE/dota;
-    cp -r $BACKUPPATH/dota/original $WORLDSTORAGE/dota;
-    rm -f $MCPATH/plugins/SimpleClans/SimpleClans.db;
-    rm -rf $MCPATH/dota;
-    rm -f $MCPATH/reset-required;
+    cd $MCPATH
+    rake reset
     "
 }
 

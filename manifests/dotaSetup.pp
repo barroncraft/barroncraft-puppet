@@ -5,7 +5,7 @@
 $serverDir = "/home/minecraft"
 $configUrl = "git://github.com/barroncraft/minecraft-dota-config.git"
 $configName = "barron-minecraft-dota"
-$paths = ["/bin", "/sbin", "/usr/bin", "/usr/sbin"]
+$paths = ["/bin", "/sbin", "/usr/bin", "/usr/sbin", "/usr/local/bin", "/usr/local/sbin"]
 
 #########################
 # Minecraft Dota Config #

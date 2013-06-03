@@ -449,8 +449,10 @@ case "$1" in
         if ps ax | grep -v grep | grep -v -i SCREEN | grep $SERVICE > /dev/null
         then
             echo "$SERVICE is running."
+            exit 0
         else
             echo "$SERVICE is not running."
+            exit 1
         fi
         ;;
     version)

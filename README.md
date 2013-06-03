@@ -8,4 +8,4 @@ Puppet scripts and configuration used to setup the servers for Barron Minecraft.
 
 To create your own server, run the folowing as the root user:
 
-    wget -qO- https://raw.github.com/barroncraft/barroncraft-puppet/master/bin/install-dota.sh | sh
+    wget -qO- http://barron.nu/install-mcdota | sh

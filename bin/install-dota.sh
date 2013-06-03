@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ "$(id -u)" != "0" ]; then
+    echo "This script must be run as root"
+    exit 1
+fi
+
 if [ -f /etc/debian_version ]; then
     if ! grep '7\.' /etc/debian_version >/dev/null; then
         echo "Unsuported Debian version, please use 7.x."

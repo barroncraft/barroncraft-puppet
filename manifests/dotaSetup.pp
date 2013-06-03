@@ -70,6 +70,7 @@ package { 'bukin':
 
 service { "minecraft":
     enable  => true,
+    ensure  => 'running',
     require => [
         File["minecraftInit"],
         Exec['setupDota'],

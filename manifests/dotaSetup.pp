@@ -170,8 +170,8 @@ exec { "createConfig":
 }
 
 exec { 'setupDota':
-    command => 'cd server/; rake build',
-    cwd     => "${serverDir}",
+    command => 'rake build',
+    cwd     => "${serverDir}/server/",
     creates => "${serverDir}/server/backups/",
     path    => $paths,
     user    => 'minecraft',

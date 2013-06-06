@@ -5,6 +5,8 @@
 $serverDir = '/home/minecraft'
 $configUrl = 'git://github.com/barroncraft/minecraft-dota-config.git'
 $configName = 'barron-minecraft-dota'
+$userName = 'minecraft'
+$groupName = 'mc-editors'
 $paths = [
     '/bin',
     '/sbin',
@@ -90,7 +92,7 @@ service { 'minecraft':
 
 cron { 'resetDotaCron':
     command => "${serverDir}/bin/checkreset.sh",
-    user    => 'minecraft',
+    user    => $userName,
     minute  => '*/1',
     require => File['minecraftResetScript'],
 }
@@ -101,6 +103,8 @@ file { 'minecraftInit':
     ensure  => link,
     path    => '/etc/init.d/minecraft',
     target  => "${serverDir}/bin/minecraft.sh",
+    owner   => $userName,
+    group   => $groupName,
     mode    => '0755',
     require => File['minecraftScript'],
 }
@@ -109,8 +113,8 @@ file { 'minecraftScript':
     ensure => present,
     path   => "${serverDir}/bin/minecraft.sh",
     source => 'file:///etc/puppet/modules/minecraft/bin/minecraft.sh',
-    owner  => 'minecraft',
-    group  => 'mc-editors',
+    owner  => $userName,
+    group  => $groupName,
     mode   => '0774',
 }
 
@@ -118,8 +122,8 @@ file { 'minecraftResetScript':
     ensure => present,
     path   => "${serverDir}/bin/checkreset.sh",
     source => 'file:///etc/puppet/modules/minecraft/bin/checkreset.sh',
-    owner  => 'minecraft',
-    group  => 'mc-editors',
+    owner  => $userName,
+    group  => $groupName,
     mode   => '0774',
 }
 
@@ -136,22 +140,22 @@ file { [
     "${serverDir}/logs"
 ]:
     ensure  => 'directory',
-    owner   => 'minecraft',
-    group   => 'mc-editors',
+    owner   => $userName,
+    group   => $groupName,
     mode    => '0774',
 }
 
 file { "${serverDir}/server":
     ensure => link,
     target => "configs/${configName}",
-    owner  => 'minecraft',
-    group  => 'mc-editors',
+    owner  => $userName,
+    group  => $userName,
     mode   => '0744',
 }
 
 ## Users & Groups ##
 
-user { 'minecraft':
+user { $userName:
     ensure => 'present',
     shell  => '/bin/bash',
     home   => $serverDir,
@@ -160,12 +164,12 @@ user { 'minecraft':
 file { "${serverDir}/.bashrc":
     ensure  => 'present',
     content => 'PATH=$PATH:~/bin',
-    owner   => 'minecraft',
-    group   => 'mc-editors',
+    owner   => $userName,
+    group   => $groupName,
     mode    => '0644',
 }
 
-group { 'mc-editors':
+group { $groupName:
     ensure => 'present',
 }
 
@@ -176,7 +180,7 @@ exec { 'createConfig':
     cwd     => "${serverDir}/configs",
     creates => "${serverDir}/configs/${configName}",
     path    => $paths,
-    user    => 'minecraft',
+    user    => $userName,
     require => [
         Package[$gitPackage],
         File["${serverDir}/configs"]
@@ -188,7 +192,7 @@ exec { 'setupDota':
     cwd     => "${serverDir}/server/",
     creates => "${serverDir}/server/backups/",
     path    => $paths,
-    user    => 'minecraft',
+    user    => $userName,
     require => [
         Exec['createConfig'],
         Package['rake'],

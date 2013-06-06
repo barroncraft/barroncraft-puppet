@@ -2,10 +2,17 @@
 # Configuration #
 #################
 
-$serverDir = "/home/minecraft"
-$configUrl = "git://github.com/barroncraft/minecraft-dota-config.git"
-$configName = "barron-minecraft-dota"
-$paths = ["/bin", "/sbin", "/usr/bin", "/usr/sbin", "/usr/local/bin", "/usr/local/sbin"]
+$serverDir = '/home/minecraft'
+$configUrl = 'git://github.com/barroncraft/minecraft-dota-config.git'
+$configName = 'barron-minecraft-dota'
+$paths = [
+    '/bin',
+    '/sbin',
+    '/usr/bin',
+    '/usr/sbin',
+    '/usr/local/bin',
+    '/usr/local/sbin'
+]
 
 #########################
 # Minecraft Dota Config #
@@ -32,24 +39,26 @@ case $operatingsystem {
         $rubyDevPackage = 'ruby-dev'
     }
     default: {
-        fail('Unsuported operating system.  Email contact@barroncraft.com if you need help.')
+        fail('Unsuported operating system. Email contact@barroncraft.com if you need help.')
     }
 }
 
-package { [ "sudo",
-            "screen",
-            $vimPackage,
-            $gitPackage,
-            "make",
-            "gcc",
-            $rubyDevPackage,
-            "htop",
-            "wget",
-            "less",
-            "rsync",
-            "zip",
-            "gzip",
-            $javaPackage ]:
+package { [
+    'sudo',
+    'screen',
+    $vimPackage,
+    $gitPackage,
+    'make',
+    'gcc',
+    $rubyDevPackage,
+    'htop',
+    'wget',
+    'less',
+    'rsync',
+    'zip',
+    'gzip',
+    $javaPackage
+]:
     ensure => installed,
 }
 
@@ -70,106 +79,108 @@ package { 'bukin':
 
 ## Service & Cron ##
 
-service { "minecraft":
-    enable  => true,
+service { 'minecraft':
     ensure  => 'running',
+    enable  => true,
     require => [
-        File["minecraftInit"],
+        File['minecraftInit'],
         Exec['setupDota'],
     ],
 }
 
-cron { "resetDotaCron":
+cron { 'resetDotaCron':
     command => "${serverDir}/bin/checkreset.sh",
-    user    => "minecraft",
-    minute  => "*/1",
-    require => File["minecraftResetScript"],
+    user    => 'minecraft',
+    minute  => '*/1',
+    require => File['minecraftResetScript'],
 }
 
 ##  Scripts ##
 
-file { "minecraftInit":
-    path   => "/etc/init.d/minecraft",
-    ensure => link,
-    target => "${serverDir}/bin/minecraft.sh",
-    mode   => 755,
-    require => File["minecraftScript"],
+file { 'minecraftInit':
+    ensure  => link,
+    path    => '/etc/init.d/minecraft',
+    target  => "${serverDir}/bin/minecraft.sh",
+    mode    => '0755',
+    require => File['minecraftScript'],
 }
 
-file { "minecraftScript":
+file { 'minecraftScript':
+    ensure => present,
     path   => "${serverDir}/bin/minecraft.sh",
-    ensure => present,
-    source => "file:///etc/puppet/modules/minecraft/bin/minecraft.sh",
-    owner   => "minecraft",
-    group   => "mc-editors",
-    mode   => 774,
+    source => 'file:///etc/puppet/modules/minecraft/bin/minecraft.sh',
+    owner  => 'minecraft',
+    group  => 'mc-editors',
+    mode   => '0774',
 }
 
-file { "minecraftResetScript":
-    path   => "${serverDir}/bin/checkreset.sh",
+file { 'minecraftResetScript':
     ensure => present,
-    source => "file:///etc/puppet/modules/minecraft/bin/checkreset.sh",
-    owner   => "minecraft",
-    group   => "mc-editors",
-    mode   => 774,
+    path   => "${serverDir}/bin/checkreset.sh",
+    source => 'file:///etc/puppet/modules/minecraft/bin/checkreset.sh',
+    owner  => 'minecraft',
+    group  => 'mc-editors',
+    mode   => '0774',
 }
 
 ## Direcories ##
-file { [ "${serverDir}",
-         "${serverDir}/backups",
-         "${serverDir}/backups/worlds",
-         "${serverDir}/backups/worlds/dota",
-         "${serverDir}/backups/server",
-         "${serverDir}/bin",
-         "${serverDir}/configs",
-         "${serverDir}/configs/default",
-         "${serverDir}/logs" ]:
-    ensure  => "directory",
-    owner   => "minecraft",
-    group   => "mc-editors",
-    mode    => 774,
+file { [
+    $serverDir,
+    "${serverDir}/backups",
+    "${serverDir}/backups/worlds",
+    "${serverDir}/backups/worlds/dota",
+    "${serverDir}/backups/server",
+    "${serverDir}/bin",
+    "${serverDir}/configs",
+    "${serverDir}/configs/default",
+    "${serverDir}/logs"
+]:
+    ensure  => 'directory',
+    owner   => 'minecraft',
+    group   => 'mc-editors',
+    mode    => '0774',
 }
 
 file { "${serverDir}/server":
     ensure => link,
     target => "configs/${configName}",
-    owner  => "minecraft",
-    group  => "mc-editors",
-    mode   => 744,
+    owner  => 'minecraft',
+    group  => 'mc-editors',
+    mode   => '0744',
 }
 
 ## Users & Groups ##
 
-user { "minecraft":
-    ensure => "present",
-    shell  => "/bin/bash",
+user { 'minecraft':
+    ensure => 'present',
+    shell  => '/bin/bash',
     home   => $serverDir,
 }
 
 file { "${serverDir}/.bashrc":
+    ensure  => 'present',
     content => 'PATH=$PATH:~/bin',
-    ensure  => "present",
-    owner   => "minecraft",
-    group   => "mc-editors",
-    mode    => 644,
+    owner   => 'minecraft',
+    group   => 'mc-editors',
+    mode    => '0644',
 }
 
-group { "mc-editors":
-    ensure => "present",
+group { 'mc-editors':
+    ensure => 'present',
 }
 
 ## Configuration ##
 
-exec { "createConfig":
+exec { 'createConfig':
     command => "git clone ${configUrl} ${configName}",
     cwd     => "${serverDir}/configs",
     creates => "${serverDir}/configs/${configName}",
     path    => $paths,
-    user    => "minecraft",
+    user    => 'minecraft',
     require => [
         Package[$gitPackage],
         File["${serverDir}/configs"]
-   ],
+    ],
 }
 
 exec { 'setupDota':

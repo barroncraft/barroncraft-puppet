@@ -29,7 +29,7 @@ case $operatingsystem {
     $rubyDevPackage = 'ruby-devel'
   }
   debian: {
-    $javaPackage = 'openjdk-6-jre'
+    $javaPackage = 'openjdk-7-jre'
     $gitPackage = 'git-core'
     $vimPackage = 'vim'
     $rubyDevPackage = 'ruby-dev'

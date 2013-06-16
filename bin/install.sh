@@ -60,4 +60,4 @@ rm -rf /etc/puppet; mkdir /etc/puppet
 git clone git://github.com/barroncraft/barroncraft-puppet.git /etc/puppet
 
 # Then run the script to configure the server
-puppet apply /etc/puppet/manifests/dotaSetup.pp
+puppet apply /etc/puppet/manifests/site.pp

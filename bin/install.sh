@@ -57,7 +57,7 @@ fi
 rm -rf /etc/puppet; mkdir /etc/puppet
 
 # Clone the latest copy of the configuration into it
-git clone git://github.com/barroncraft/barroncraft-puppet.git /etc/puppet
+git clone https://github.com/barroncraft/barroncraft-puppet.git  /etc/puppet
 
 # Then run the script to configure the server
 puppet apply /etc/puppet/manifests/site.pp

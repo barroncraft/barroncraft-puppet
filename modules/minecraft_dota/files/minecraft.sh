@@ -307,6 +307,7 @@ change_ramdisk_state() {
 reset_dota_world() {
     as_user "	
     cd $MCPATH
+    PATH=$PATH:/usr/local/bin
     rake reset
     "
 }
